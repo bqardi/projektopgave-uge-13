@@ -7,39 +7,41 @@ document.addEventListener("DOMContentLoaded", event => {
     let showOverlayButtons = document.querySelectorAll(".show-overlay");
 
     const overlayDisableTimer = 400;
-    
+
     // element.addEventListener("click", showOverlay); //Only show overlay (background)
-    overlay.addEventListener("click", function(evt){
+    overlay.addEventListener("click", function(evt) {
         hideOverlay(evt);
     });
-    overlayClose.addEventListener("click", function(evt){
+    overlayClose.addEventListener("click", function(evt) {
         hideOverlay(evt);
     });
-    overlayWindow.addEventListener("click", function(evt){
+    overlayWindow.addEventListener("click", function(evt) {
         evt.stopPropagation();
     });
-    
+
     for (let i = 0; i < showOverlayButtons.length; i++) {
         const showOverlayButton = showOverlayButtons[i];
-        showOverlayButton.addEventListener("click", function(evt){
+        showOverlayButton.addEventListener("click", function(evt) {
             showOverlay(evt);
             showWindow(this.dataset.for); //true: remove invalid class from overlayTitle, false: add invalid class to overlayTitle
         });
     }
 
-    function showOverlay(evt){
+    function showOverlay(evt) {
         evt.preventDefault();
         overlay.classList.remove("disabled");
         overlay.classList.remove("hidden");
     }
-    function hideOverlay(evt){
+
+    function hideOverlay(evt) {
         evt.preventDefault();
         overlay.classList.add("hidden");
         setTimeout(() => {
             overlay.classList.add("disabled");
         }, overlayDisableTimer);
     }
-    function showWindow(id){
+
+    function showWindow(id) {
         const overlayClasses = document.querySelectorAll(".overlay-class");
         for (let i = 0; i < overlayClasses.length; i++) {
             const overlayClass = overlayClasses[i];
@@ -54,15 +56,15 @@ document.addEventListener("DOMContentLoaded", event => {
     //#endregion
 
     const search = document.getElementById("search");
-    
-    document.body.addEventListener("click", function(){
+
+    document.body.addEventListener("click", function() {
         search.classList.remove("stay");
     })
-    search.addEventListener("click", function(e){
+    search.addEventListener("click", function(e) {
         e.stopPropagation();
         search.classList.add("stay");
     });
-    search.addEventListener("keyup", function(e){
+    search.addEventListener("keyup", function(e) {
         if (e.keyCode === 13) {
             search.classList.remove("stay");
             search.value = "";
@@ -103,23 +105,25 @@ document.addEventListener("DOMContentLoaded", event => {
         },
     }
 
-    bars.illustrator.link.addEventListener("mouseover", function(){
-        barsController(bars.illustrator);
-    });
-    bars.photoshop.link.addEventListener("mouseover", function(){
-        barsController(bars.photoshop);
-    });
-    bars.paintings.link.addEventListener("mouseover", function(){
-        barsController(bars.paintings);
-    });
-    bars.photoVideo.link.addEventListener("mouseover", function(){
-        barsController(bars.photoVideo);
-    });
-    bars.people.link.addEventListener("mouseover", function(){
-        barsController(bars.people);
-    });
+    if (bars.illustrator.link) {
+        bars.illustrator.link.addEventListener("mouseover", function() {
+            barsController(bars.illustrator);
+        });
+        bars.photoshop.link.addEventListener("mouseover", function() {
+            barsController(bars.photoshop);
+        });
+        bars.paintings.link.addEventListener("mouseover", function() {
+            barsController(bars.paintings);
+        });
+        bars.photoVideo.link.addEventListener("mouseover", function() {
+            barsController(bars.photoVideo);
+        });
+        bars.people.link.addEventListener("mouseover", function() {
+            barsController(bars.people);
+        });
+    }
 
-    function barsController(bar){
+    function barsController(bar) {
         let progress = 0;
         if (bar.isAnimating) {
             return;
