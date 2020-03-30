@@ -1,2 +1,2 @@
 # projektopgave-uge-13
-A project from school to create a "designer" website.
+Et projekt fra skolen, hvor vi skulle lave et "design" website.
