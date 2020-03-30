@@ -68,4 +68,75 @@ document.addEventListener("DOMContentLoaded", event => {
             search.value = "";
         }
     });
+
+    //#region about.html BARS animation
+    let bars = {
+        illustrator: {
+            link: document.getElementById("illustrator-link"),
+            element: document.getElementById("illustrator"),
+            progress: 95,
+            isAnimating: false,
+        },
+        photoshop: {
+            link: document.getElementById("photoshop-link"),
+            element: document.getElementById("photoshop"),
+            progress: 88,
+            isAnimating: false,
+        },
+        paintings: {
+            link: document.getElementById("paintings-link"),
+            element: document.getElementById("paintings"),
+            progress: 79,
+            isAnimating: false,
+        },
+        photoVideo: {
+            link: document.getElementById("photo-video-link"),
+            element: document.getElementById("photo-video"),
+            progress: 54,
+            isAnimating: false,
+        },
+        people: {
+            link: document.getElementById("people-link"),
+            element: document.getElementById("people"),
+            progress: 82,
+            isAnimating: false,
+        },
+    }
+
+    bars.illustrator.link.addEventListener("mouseover", function(){
+        barsController(bars.illustrator);
+    });
+    bars.photoshop.link.addEventListener("mouseover", function(){
+        barsController(bars.photoshop);
+    });
+    bars.paintings.link.addEventListener("mouseover", function(){
+        barsController(bars.paintings);
+    });
+    bars.photoVideo.link.addEventListener("mouseover", function(){
+        barsController(bars.photoVideo);
+    });
+    bars.people.link.addEventListener("mouseover", function(){
+        barsController(bars.people);
+    });
+
+    function barsController(bar){
+        let progress = 0;
+        if (bar.isAnimating) {
+            return;
+        }
+        bar.isAnimating = true;
+        bar.element.classList.add("animating");
+        let interval = setInterval(() => {
+            bar.element.style.width = progress + "%";
+            progress += 3;
+            if (progress > bar.progress) {
+                clearInterval(interval);
+                setTimeout(() => {
+                    bar.isAnimating = false;
+                    bar.element.classList.remove("animating");
+                }, 200);
+            }
+        }, 10);
+    }
+    //#endregion about.html BARS animation
 });

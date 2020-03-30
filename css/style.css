@@ -530,6 +530,13 @@ section.works .image-link:hover img{
 .skills .contact-link .bar-background .bar{
     background-color: var(--theme-bar);
     height: 100%;
+    transition: background-color 2000ms, box-shadow 1500ms;
+}
+.skills .contact-link .bar-background .bar.animating{
+    --highlight-color: #edff87;
+    background-color: var(--highlight-color);
+    box-shadow: 0 0 20px 5px var(--highlight-color);
+    transition: background-color 100ms, box-shadow 100ms;
 }
 
 .about-image{
